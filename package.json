@@ -1,0 +1,20 @@
+{
+  "name": "PossumBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "discord-rpc": "^3.1.1",
+    "discord.js": "^12.2.0",
+    "node-fetch": "^2.6.0",
+    "ping": "^0.2.3",
+    "ws": "^7.3.0"
+  }
+}
