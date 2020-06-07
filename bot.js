@@ -46,11 +46,15 @@ client.on('ready', () => {
     let bootFinish = Date.now(); //makes another timestamp
     let bootTime = (bootFinish - bootStart); //subtracts the ms values of the two vars
     console.log('Start-up time was...' + bootTime + 'ms'); //reports the time it took to boot the bot in ms
-    client.user.setPresence({activity: {name: 'with cute animals'}, status: 'online'}).then(r => console.log(chalk.green("aaaaaaaa")));
+    client.user.setPresence({activity: {name: '!PCCommands'}, status: 'online'}).then(r => console.log(chalk.green("aaaaaaaa")));
 
 });
 
 client.on("message", msg => {
+    if (msg.content.startsWith("!PBCommands")){
+        msg.reply("aaaaaaaa");
+        msg.channel.send("I can !possum and !raccoon");
+    }
     if (msg.content.startsWith("!raccoon")) {
         fs.readdir('./img/raccoon/', (err, files) => {
             let num = Math.floor(Math.random() * files.length) + 1;
