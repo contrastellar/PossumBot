@@ -46,7 +46,7 @@ client.on('ready', () => {
     let bootFinish = Date.now(); //makes another timestamp
     let bootTime = (bootFinish - bootStart); //subtracts the ms values of the two vars
     console.log('Start-up time was...' + bootTime + 'ms'); //reports the time it took to boot the bot in ms
-    client.user.setPresence({activity: {name: '!PCCommands'}, status: 'online'}).then(r => console.log(chalk.green("aaaaaaaa")));
+    client.user.setPresence({activity: {name: 'with possums'}, status: 'online'}).then(r => console.log(chalk.green("aaaaaaaa")));
 
 });
 
@@ -58,19 +58,38 @@ client.on("message", msg => {
     if (msg.content.startsWith("!raccoon")) {
         fs.readdir('./img/raccoon/', (err, files) => {
             let num = Math.floor(Math.random() * files.length) + 1;
-            console.log("Fetching meme #" + num + ", Number of files: " + files.length);
+            console.log("Fetching raccoon #" + num + ", Number of files: " + files.length);
             const attachment = new MessageAttachment('./img/raccoon/' + num + '.png');
             msg.channel.send(attachment);
         });
     } else if (msg.content.startsWith("!possum")) {
         fs.readdir('./img/possum/', (err, files) => {
             let num = Math.floor(Math.random() * files.length) + 1;
-            console.log("Fetching meme #" + num + ", Number of files: " + files.length);
+            console.log("Fetching possum #" + num + ", Number of files: " + files.length);
             const attachment = new MessageAttachment('./img/possum/' + num + '.png');
             msg.channel.send(attachment);
         });
 
-    } else if (msg.content.startsWith('!admin')) { //admin-only commands
+	} else if (msg.content.startsWith("!redpanda")) {
+        fs.readdir('./img/possum/', (err, files) => {
+            let num = Math.floor(Math.random() * files.length) + 1;
+            console.log("Fetching possum #" + num + ", Number of files: " + files.length);
+            const attachment = new MessageAttachment('./img/redpanda/' + num + '.png');
+            msg.channel.send(attachment);
+        });
+
+    }else if (msg.content.startsWith("!penguin")) {
+        fs.readdir('./img/possum/', (err, files) => {
+            let num = Math.floor(Math.random() * files.length) + 1;
+            console.log("Fetching possum #" + num + ", Number of files: " + files.length);
+            const attachment = new MessageAttachment('./img/penguin/' + num + '.png');
+            msg.channel.send(attachment);
+        });
+
+    }else if(msg.content.startsWith('!vibe')){
+		msg.channel.send("https://cdn.discordapp.com/attachments/547164475535523890/735923050696015903/1593712826771.mp4");
+		
+	}else if (msg.content.startsWith('!admin')) { //admin-only commands
 
         if (msg.author.id !== '181187505448681472') { //verifies that Contrastellar#0001 is the only user to do this.
             msg.channel.send('AAAAAAAAAAA'); //clowns on a fool
