@@ -71,7 +71,7 @@ client.on("message", msg => {
         });
 
 	} else if (msg.content.startsWith("!redpanda")) {
-        fs.readdir('./img/possum/', (err, files) => {
+        fs.readdir('./img/redpanda/', (err, files) => {
             let num = Math.floor(Math.random() * files.length) + 1;
             console.log("Fetching possum #" + num + ", Number of files: " + files.length);
             const attachment = new MessageAttachment('./img/redpanda/' + num + '.png');
@@ -79,7 +79,7 @@ client.on("message", msg => {
         });
 
     }else if (msg.content.startsWith("!penguin")) {
-        fs.readdir('./img/possum/', (err, files) => {
+        fs.readdir('./img/penguin/', (err, files) => {
             let num = Math.floor(Math.random() * files.length) + 1;
             console.log("Fetching possum #" + num + ", Number of files: " + files.length);
             const attachment = new MessageAttachment('./img/penguin/' + num + '.png');
