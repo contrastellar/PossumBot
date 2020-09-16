@@ -62,7 +62,7 @@ client.on("message", msg => {
             const attachment = new MessageAttachment('./img/raccoon/' + num + '.png');
             msg.channel.send(attachment);
         });
-    } else if (msg.content.startsWith("!possum")) {
+    } else if (msg.content.startsWith("!possum") || msg.content.startsWith("!teddy")) {
         fs.readdir('./img/possum/', (err, files) => {
             let num = Math.floor(Math.random() * files.length) + 1;
             console.log("Fetching possum #" + num + ", Number of files: " + files.length);
@@ -85,6 +85,9 @@ client.on("message", msg => {
             const attachment = new MessageAttachment('./img/penguin/' + num + '.png');
             msg.channel.send(attachment);
         });
+
+    }else if(msg.content.startsWith('!cbt')) {
+        msg.reply("why");
 
     }else if(msg.content.startsWith('!vibe')){
 		msg.channel.send("https://cdn.discordapp.com/attachments/547164475535523890/735923050696015903/1593712826771.mp4");
