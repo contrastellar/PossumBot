@@ -1,5 +1,4 @@
 // noinspection JSIgnoredPromiseFromCall
-
 const {Client, RichEmbed, MessageAttachment } = require('discord.js');
 const fs = require('fs');
 const chalk = require('chalk');
@@ -15,7 +14,7 @@ try{
 const client = new Client();
 client.login(token); //the login info...
 
-//Constants for emojis?
+
 
 /**START**/
 client.on('ready', () => {
@@ -46,23 +45,15 @@ client.on('ready', () => {
     let bootFinish = Date.now(); //makes another timestamp
     let bootTime = (bootFinish - bootStart); //subtracts the ms values of the two vars
     console.log('Start-up time was...' + bootTime + 'ms'); //reports the time it took to boot the bot in ms
-    client.user.setPresence({activity: {name: 'with possums'}, status: 'online'}).then(r => console.log(chalk.green("aaaaaaaa")));
+    client.user.setPresence({activity: {name: `maintenance!`}, status: 'online'}).then(r => console.log(chalk.green("aaaaaaaa")));
 
 });
 
 client.on("message", msg => {
-    if (msg.content.startsWith("!PBCommands")){
-        msg.reply("aaaaaaaa");
-        msg.channel.send("I can !possum and !raccoon");
-    }
-    if (msg.content.startsWith("!raccoon")) {
-        fs.readdir('./img/raccoon/', (err, files) => {
-            let num = Math.floor(Math.random() * files.length) + 1;
-            console.log("Fetching raccoon #" + num + ", Number of files: " + files.length);
-            const attachment = new MessageAttachment('./img/raccoon/' + num + '.png');
-            msg.channel.send(attachment);
-        });
-    } else if (msg.content.startsWith("!possum") || msg.content.startsWith("!teddy")) {
+
+    if(msg.content.startsWith("!pccommands")) msg.reply("only !possum aaaaaa");
+
+    if (msg.content.startsWith("!possum")) {
         fs.readdir('./img/possum/', (err, files) => {
             let num = Math.floor(Math.random() * files.length) + 1;
             console.log("Fetching possum #" + num + ", Number of files: " + files.length);
@@ -70,67 +61,30 @@ client.on("message", msg => {
             msg.channel.send(attachment);
         });
 
-	} else if (msg.content.startsWith("!redpanda")) {
-        fs.readdir('./img/redpanda/', (err, files) => {
-            let num = Math.floor(Math.random() * files.length) + 1;
-            console.log("Fetching possum #" + num + ", Number of files: " + files.length);
-            const attachment = new MessageAttachment('./img/redpanda/' + num + '.png');
-            msg.channel.send(attachment);
-        });
-
-    }else if (msg.content.startsWith("!penguin")) {
-        fs.readdir('./img/penguin/', (err, files) => {
-            let num = Math.floor(Math.random() * files.length) + 1;
-            console.log("Fetching possum #" + num + ", Number of files: " + files.length);
-            const attachment = new MessageAttachment('./img/penguin/' + num + '.png');
-            msg.channel.send(attachment);
-        });
-
-    }else if(msg.content.startsWith('!cbt')) {
-        msg.reply("why");
-
-    }else if(msg.content.startsWith('!vibe')){
+    }
+    else if(msg.content.startsWith('!vibe')){
 		msg.channel.send("https://cdn.discordapp.com/attachments/547164475535523890/735923050696015903/1593712826771.mp4");
 		
-	}else if (msg.content.startsWith('!admin')) { //admin-only commands
+	}
 
-        if (msg.author.id !== '181187505448681472') { //verifies that Contrastellar#0001 is the only user to do this.
-            msg.channel.send('AAAAAAAAAAA'); //clowns on a fool
+    if(msg.content.startsWith("!wheel")){
+        msg.channel.send("https://cdn.discordapp.com/attachments/660329145804390410/782699770015776819/possum_on_wheel.gif");
+    }
 
-        } else {
-            console.log(chalk.yellow('<REPORT> ') + msg.createdAt + ' good admin call from ' + msg.author.username);
-            let arg = msg.content.slice(7);
-            //above removes the !admin call
-            //The following 'if' checks the next argument
-            if (arg.startsWith('playstatus')) {
-                arg = arg.slice(11);
-                console.log(chalk.yellow('<REPORT> ') + 'status change call ');
-                if (arg.length == 0) {
-                    msg.reply('I need a new playing Status!');
-                } else {
-                    client.user.setPresence({game: {name: arg}});
-                    console.log(chalk.red('<IMPORTANT> ') + 'The status was changed to "' + arg + '"');
-                    console.log(chalk.yellow('<REPORT> ') + msg.createdAt + ' action performed by:' + msg.author.username);
-                    msg.reply('status changed.').then();
+    if(msg.content.startsWith("!honk")){
+        fs.readdir('./', (err, files) => {
+            const attachment = new MessageAttachment('./img/HONK.jpg');
+            msg.channel.send(attachment);
+        });
+    }
 
-                }
-            } else if (arg.startsWith('onlinestatus')) {
-                arg = arg.slice(13);
-                if (arg.length == 0) {
-                    msg.reply('I need an new online status! <online,dnd>');
-                } else {
-                    if (arg.toString() === "away") {
-                        msg.reply("I do not support an 'away' status, please use online or dnd.").then()
-
-                    } else {
-                        client.user.setPresence({status: arg.toString()});
-                        console.log(chalk.red('<IMPORTANT> ') + 'The online status was changed to "' + arg + '"');
-                        msg.reply('online status changed.');
-                    }
-                }
-            } else {
-                msg.reply("I need a argument... \n USAGE - !admin <playstatus/onlinestatus/...>");
-            }
-        }
+    if(msg.content.startsWith("!info")){
+        //TODO fix embed constructor
+        const embed = new RichEmbed();
+            embed.setTitle('new possum who dis').setColor(0x29a329)
+            .setDescription('PossumBot. Screams. Posts Possums. \n' +
+                'Please be nice. !possum. \n' +
+                'Version: Possum-1.0');
+        msg.channel.send(embed);
     }
 });
