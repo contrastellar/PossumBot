@@ -45,7 +45,7 @@ client.on('ready', () => {
     let bootFinish = Date.now(); //makes another timestamp
     let bootTime = (bootFinish - bootStart); //subtracts the ms values of the two vars
     console.log('Start-up time was...' + bootTime + 'ms'); //reports the time it took to boot the bot in ms
-    client.user.setPresence({activity: {name: `maintenance!`}, status: 'online'}).then(r => console.log(chalk.green("aaaaaaaa")));
+    client.user.setPresence({activity: {name: `aaaaaaa!`}, status: 'online'}).then(r => console.log(chalk.green("aaaaaaaa")));
 
 });
 
@@ -78,7 +78,7 @@ client.on("message", msg => {
         });
     }
 
-    if(msg.content.startsWith("!info")){
+    if(msg.content.startsWith("//!info")){
         //TODO fix embed constructor
         const embed = new RichEmbed();
             embed.setTitle('new possum who dis').setColor(0x29a329)
