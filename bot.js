@@ -2,7 +2,6 @@
 const {Client, RichEmbed, MessageAttachment } = require('discord.js');
 const fs = require('fs');
 const chalk = require('chalk');
-console.clear();
 let token;
 
 try{
