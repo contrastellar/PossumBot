@@ -67,7 +67,7 @@ client.on("message", msg => {
 	}
 
     if(msg.content.startsWith("!wheel")){
-        msg.channel.send("https://cdn.discordapp.com/attachments/660329145804390410/782699770015776819/possum_on_wheel.gif");
+        msg.channel.send("https://cdn.discordapp.com/attachments/161297309978591233/903331498294390794/video0_13.mp4");
     }
 
     if(msg.content.startsWith("!honk")){
@@ -75,15 +75,5 @@ client.on("message", msg => {
             const attachment = new MessageAttachment('./img/HONK.jpg');
             msg.channel.send(attachment);
         });
-    }
-
-    if(msg.content.startsWith("//!info")){
-        //TODO fix embed constructor
-        const embed = new RichEmbed();
-            embed.setTitle('new possum who dis').setColor(0x29a329)
-            .setDescription('PossumBot. Screams. Posts Possums. \n' +
-                'Please be nice. !possum. \n' +
-                'Version: Possum-1.0');
-        msg.channel.send(embed);
     }
 });
