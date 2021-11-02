@@ -67,7 +67,7 @@ client.on("message", msg => {
 	}
 
     if(msg.content.startsWith("!wheel")){
-        msg.channel.send("https://cdn.discordapp.com/attachments/660329145804390410/782699770015776819/possum_on_wheel.gif");
+        msg.channel.send("https://cdn.discordapp.com/attachments/161297309978591233/903331498294390794/video0_13.mp4");
     }
 
     if(msg.content.startsWith("!honk")){
