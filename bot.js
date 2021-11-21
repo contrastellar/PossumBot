@@ -76,7 +76,9 @@ client.on("message", msg => {
             msg.channel.send(attachment);
         });
     }
-
+    if(msg.content.startsWith("!metar")){
+	    msg.reply("WHAT THE FUCK IS WEATHER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    }
     if(msg.content.startsWith("//!info")){
         //TODO fix embed constructor
         const embed = new RichEmbed();
