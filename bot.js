@@ -70,6 +70,13 @@ client.on("message", msg => {
         msg.channel.send("https://cdn.discordapp.com/attachments/161297309978591233/903331498294390794/video0_13.mp4");
     }
 
+	if(msg.content.startsWith("!porb")){
+		fs.readdir('./'), (err, files) => {
+			const attachment = new MessageAttachment('./img/porb.png');
+			msg.channel.send(attachment);
+		}
+	}
+
     if(msg.content.startsWith("!honk")){
         fs.readdir('./', (err, files) => {
             const attachment = new MessageAttachment('./img/HONK.jpg');
