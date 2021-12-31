@@ -92,4 +92,8 @@ client.on("message", msg => {
 				'Version: Possum-1.0');
 		msg.channel.send(embed);
 	}
+
+    if(msg.content.startsWith("!crypto")){
+        msg.reply("https://cdn.discordapp.com/attachments/812580457719005206/926519160014516284/jpZySFGv8ZiWcX40.mp4");
+    }
 });
