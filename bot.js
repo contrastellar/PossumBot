@@ -79,9 +79,6 @@ client.on("message", msg => {
 	if(msg.content.startsWith("!metar")){
 		msg.reply("WHAT THE FUCK IS WEATHER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	}
-	if(msg.content.startsWith("!gabby")){
-		msg.channel.send("Aaaa <3");
-	}
 
 	if(msg.content.startsWith("//!info")){
 		//TODO fix embed constructor
@@ -91,6 +88,9 @@ client.on("message", msg => {
 				'Please be nice. !possum. \n' +
 				'Version: Possum-1.0');
 		msg.channel.send(embed);
+	}
+	if(msg.content.startsWith("!stroll")){
+		msg.channel.send("https://cdn.discordapp.com/attachments/743621304246206494/937426290296881163/video0-5_1.mov")
 	}
 
     if(msg.content.startsWith("!crypto")){
