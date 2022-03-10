@@ -93,7 +93,11 @@ client.on("message", msg => {
 				'Version: Possum-1.0');
 		msg.channel.send(embed);
 	}
-	else if(msg.content.startsWith("!crypto")){
-        	msg.reply("https://cdn.discordapp.com/attachments/812580457719005206/926519160014516284/jpZySFGv8ZiWcX40.mp4");
-    	}
+	if(msg.content.startsWith("!stroll")){
+		msg.channel.send("https://cdn.discordapp.com/attachments/743621304246206494/937426290296881163/video0-5_1.mov")
+	}
+
+    if(msg.content.startsWith("!crypto")){
+        msg.reply("https://cdn.discordapp.com/attachments/812580457719005206/926519160014516284/jpZySFGv8ZiWcX40.mp4");
+    }
 });
