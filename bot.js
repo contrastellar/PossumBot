@@ -5,7 +5,7 @@ const chalk = require('chalk');
 let token;
 
 try{
-	token = fs.readFileSync('DiscordToken.txt', 'utf8');
+	token = fs.readFileSync('/home/missagathon/PossumBot/DiscordToken.txt', 'utf8');
 }catch(error){
 	console.log(chalk.red("No file exists for 'DiscordToken.txt'"));
 }
@@ -53,10 +53,10 @@ client.on("message", msg => {
 	if(msg.content.startsWith("!pccommands")) msg.reply("only !possum aaaaaa");
 
 	if (msg.content.startsWith("!possum")) {
-		fs.readdir('./img/possum/', (err, files) => {
+		fs.readdir('/home/missagathon/PossumBot/img/possum/', (err, files) => {
 			let num = Math.floor(Math.random() * files.length) + 1;
 			console.log("Fetching possum #" + num + ", Number of files: " + files.length);
-			const attachment = new MessageAttachment('./img/possum/' + num + '.png');
+			const attachment = new MessageAttachment('/home/missagathon/PossumBot/img/possum/' + num + '.png');
 			msg.channel.send(attachment);
 		});
 
