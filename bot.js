@@ -2,6 +2,7 @@
 const {Client, RichEmbed, MessageAttachment } = require('discord.js');
 const fs = require('fs');
 const chalk = require('chalk');
+const process = require("process");
 let token;
 
 try{
@@ -18,6 +19,7 @@ client.login(token); //the login info...
 /**START**/
 client.on('ready', () => {
 	console.log(chalk.greenBright("Starting Here"));
+	process.exit(0);
 	//reports login
 	console.log(chalk.green('Logged in')+ ` as `+chalk.blue(`${client.user.tag}!`));
 	console.log('Console '+chalk.cyan('START'));
