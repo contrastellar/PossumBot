@@ -19,7 +19,7 @@ main :: IO ()
 main = do
     tok <- TIO.readFile "/home/contrastellar/PossumBot/DiscordToken.txt"
     let conf :: DiscordConfig
-        conf = PossumLib.DiscordConfig
+        conf = DiscordConfig
             { botPrefix = "!"
             , botToken = tok
             , botCommands = commands }
