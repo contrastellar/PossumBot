@@ -4,6 +4,7 @@ const fs = require('fs');
 const chalk = require('chalk');
 let token;
 
+// Finds Discord bot token from file.
 try{
 	token = fs.readFileSync('/home/contrastellar/PossumBot/DiscordToken.txt', 'utf8');
 }catch(error){
@@ -48,19 +49,24 @@ client.on('ready', () => {
 
 });
 
+
+
+/**USER COMMANDS**/
 client.on("message", msg => {
 
 	if(msg.content.startsWith("!pccommands")) msg.reply("only !possum aaaaaa");
 
+	// "!possum" - returns a random image of a possum
 	if (msg.content.startsWith("!possum")) {
 		fs.readdir('/home/contrastellar/PossumBot/img/possum/', (err, files) => {
-			let num = Math.floor(Math.random() * files.length) + 1;
+			let num = Math.floor(Math.random() * files.length) + 1; 
 			console.log("Fetching possum #" + num + ", Number of files: " + files.length);
 			const attachment = new MessageAttachment('/home/contrastellar/PossumBot/img/possum/' + num + '.png');
 			msg.channel.send(attachment);
 		});
 
 	}
+	// "!vibe" - returns an mp4 of a dancing possum
 	else if(msg.content.startsWith('!vibe')){
 		msg.channel.send("https://cdn.discordapp.com/attachments/547164475535523890/735923050696015903/1593712826771.mp4");
 
@@ -70,20 +76,25 @@ client.on("message", msg => {
 
 	}*/
 
+	// "!wheel" - returns an mp4 of a possum running on a large hamster wheel
 	else if(msg.content.startsWith("!wheel")){
 		msg.channel.send("https://cdn.discordapp.com/attachments/161297309978591233/903331498294390794/video0_13.mp4");
 	}
 
+	// "!honk" - CURRENTLY BROKEN
 	else if(msg.content.startsWith("!honk")){
 		fs.readdir('./', (err, files) => {
 			const attachment = new MessageAttachment('./img/HONK.jpg');
 			msg.channel.send(attachment);
 		});
 	}
+	
+	// "!metar" - a humourous weather command
 	else if(msg.content.startsWith("!metar")){
 		msg.reply("WHAT THE FUCK IS WEATHER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	}
 
+	// "!info" - returns information about PossumBot CURRENTLY BROKEN
 	else if(msg.content.startsWith("//!info")){
 		//TODO fix embed constructor
 		const embed = new RichEmbed();
@@ -93,11 +104,14 @@ client.on("message", msg => {
 				'Version: Possum-1.0');
 		msg.channel.send(embed);
 	}
+	
+	// "!stroll" - returns an mp4 of a happily walking possum
 	if(msg.content.startsWith("!stroll")){
 		msg.channel.send("https://cdn.discordapp.com/attachments/743621304246206494/937426290296881163/video0-5_1.mov")
 	}
 
-    if(msg.content.startsWith("!crypto")){
+    // "!crypto" - returns an mp4 version of the "running through a crypto mine with a magnet" meme
+	if(msg.content.startsWith("!crypto")){
         msg.reply("https://cdn.discordapp.com/attachments/812580457719005206/926519160014516284/jpZySFGv8ZiWcX40.mp4");
     }
 });
