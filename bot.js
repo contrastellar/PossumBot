@@ -2,6 +2,7 @@
 const {Client, RichEmbed, MessageAttachment } = require('discord.js');
 const fs = require('fs');
 const chalk = require('chalk');
+const { channel } = require('diagnostics_channel');
 let token;
 
 try{
@@ -12,6 +13,15 @@ try{
 // Create an instance of a Discord client.
 const client = new Client();
 client.login(token); //the login info...
+
+function isHaydensServer(channelID, msg){
+	let haydensServer = "293174849889763328";
+	if(String(channelID) === haydensServer){
+		return true;
+	}
+	msg.reply("https://youtube.com/shorts/7LU7FP8jhGE?feature=share");
+	return false;
+}
 
 
 
@@ -48,19 +58,35 @@ client.on('ready', () => {
 
 });
 
-client.on("message", msg => {
+function findPossum(msg, files){
+	let num = Math.floor(Math.random() * files.length) + 1;
+	console.log("Fetching possum #" + num + ", Number of files: " + files.length);
+	let attachment;
+	try{
+		attachment = new MessageAttachment('/home/contrastellar/PossumBot/img/possum/' + num + '.png');
 
+	}catch(err){
+		console.error(err);
+		msg.channel.send("Uh oh... You hit the exception possum...\nhttps://www.youtube.com/watch?v=bylC_0gumkk");
+		msg.channel.send("You really fucked this up, this should be a goddamn debug message, but here we are.");
+		msg.reply("Here's a new possum (hopefully)");
+		return findPossum(files);
+
+	}finally{
+		msg.channel.send(attachment);
+
+	}
+}
+
+client.on("message", msg => {
 	if(msg.content.startsWith("!pccommands")) msg.reply("only !possum aaaaaa");
 
 	if (msg.content.startsWith("!possum")) {
 		fs.readdir('/home/contrastellar/PossumBot/img/possum/', (err, files) => {
-			let num = Math.floor(Math.random() * files.length) + 1;
-			console.log("Fetching possum #" + num + ", Number of files: " + files.length);
-			const attachment = new MessageAttachment('/home/contrastellar/PossumBot/img/possum/' + num + '.png');
-			msg.channel.send(attachment);
-		});
+			findPossum(msg, files);
+		}
+	)}
 
-	}
 	else if(msg.content.startsWith('!vibe')){
 		msg.channel.send("https://cdn.discordapp.com/attachments/547164475535523890/735923050696015903/1593712826771.mp4");
 
@@ -83,15 +109,17 @@ client.on("message", msg => {
 	else if(msg.content.startsWith("!metar")){
 		msg.reply("WHAT THE FUCK IS WEATHER AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 	}
-
-	else if(msg.content.startsWith("//!info")){
-		//TODO fix embed constructor
-		const embed = new RichEmbed();
-		embed.setTitle('new possum who dis').setColor(0x29a329)
-			.setDescription('PossumBot. Screams. Posts Possums. \n' +
-				'Please be nice. !possum. \n' +
-				'Version: Possum-1.0');
-		msg.channel.send(embed);
+	//else if(msg.content.startsWith("!gabby")){
+	//	msg.channel.send("aaa! <3");
+	//}
+	else if(msg.content.startsWith("!hayden") && isHaydensServer(msg.guild.id, msg)){
+		msg.channel.send("aaa!!! <3");
+	}
+	else if(msg.content.startsWith("!bets")&& isHaydensServer(msg.guild.id, msg)){
+		msg.channel.send("pat da puby!");
+	}
+	else if(msg.content.startsWith("!nick")&& isHaydensServer(msg.guild.id, msg)){
+		msg.channel.send("https://cdn.discordapp.com/attachments/688916681132998692/962551485902770196/unknown.png")
 	}
 	if(msg.content.startsWith("!stroll")){
 		msg.channel.send("https://cdn.discordapp.com/attachments/743621304246206494/937426290296881163/video0-5_1.mov")
@@ -100,4 +128,7 @@ client.on("message", msg => {
     if(msg.content.startsWith("!crypto")){
         msg.reply("https://cdn.discordapp.com/attachments/812580457719005206/926519160014516284/jpZySFGv8ZiWcX40.mp4");
     }
+	if(msg.content.startsWith("!bigiron")){
+		msg.channel.send("https://cdn.discordapp.com/attachments/307874761252274178/1047695524238725200/bigiron.mp4");
+	}
 });
